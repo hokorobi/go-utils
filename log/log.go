@@ -14,7 +14,7 @@ func getFilename(ext string) string {
 	exec, _ := os.Executable()
 	return filepath.Join(filepath.Dir(exec), getFileNameWithoutExt(exec)+ext)
 }
-func logt(m interface{}) {
+func Logt(m interface{}) {
 	f, err := os.OpenFile(getFilename(".log"), os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
 	if err != nil {
 		panic("Cannot open log file:" + err.Error())
