@@ -26,11 +26,15 @@ func PrintTee(m interface{}) {
 	log.SetFlags(log.Ldate | log.Ltime)
 	log.Println(m)
 }
-func FatalfTee(format string, m ...interface{}) {
+func PrintfTee(format string, m ...interface{}) {
 	PrintTee(fmt.Sprintf(format, m...))
-	os.Exit(1)
 }
+
 func FatalTee(m ...interface{}) {
 	PrintTee(fmt.Sprint(m...))
+	os.Exit(1)
+}
+func FatalfTee(format string, m ...interface{}) {
+	PrintTee(fmt.Sprintf(format, m...))
 	os.Exit(1)
 }
