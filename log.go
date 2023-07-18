@@ -1,22 +1,14 @@
-package logutil
+package goutils
 
 import (
 	"fmt"
 	"io"
 	"log"
 	"os"
-	"path/filepath"
 )
 
-func getFileNameWithoutExt(path string) string {
-	return filepath.Base(path[:len(path)-len(filepath.Ext(path))])
-}
-func getFilename(ext string) string {
-	exec, _ := os.Executable()
-	return filepath.Join(filepath.Dir(exec), getFileNameWithoutExt(exec)+ext)
-}
 func PrintTee(m interface{}) {
-	f, err := os.OpenFile(getFilename(".log"), os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+	f, err := os.OpenFile(GetFilenameSameBase(".log"), os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
 	if err != nil {
 		panic("Cannot open log file:" + err.Error())
 	}
