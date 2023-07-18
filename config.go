@@ -6,10 +6,7 @@ import (
 	"os"
 )
 
-type config interface{}
-
-func LoadConfig() (config, error) {
-	var d config
+func LoadConfig() (d interface{}, err error) {
 
 	f, err := os.Open(GetFilenameSameBase(".json"))
 	if err != nil {
@@ -26,7 +23,7 @@ func LoadConfig() (config, error) {
 	return d, nil
 }
 
-func WriteConfig(d config) error {
+func WriteConfig(d interface{}) error {
 	b, err := json.MarshalIndent(&d, "", "  ")
 	if err != nil {
 		return err
